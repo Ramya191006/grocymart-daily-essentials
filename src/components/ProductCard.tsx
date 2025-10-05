@@ -48,6 +48,11 @@ const ProductCard = ({ product }: ProductCardProps) => {
           src={product.image_url || "/placeholder.svg"}
           alt={product.name}
           className="h-full w-full object-cover transition-transform duration-300 group-hover:scale-105"
+          onError={(e) => {
+            e.currentTarget.src = "/placeholder.svg";
+            e.currentTarget.onerror = null;
+          }}
+          loading="lazy"
         />
         {product.stock < 20 && (
           <div className="absolute top-2 right-2 rounded-full bg-destructive px-2 py-1 text-xs font-semibold text-white">

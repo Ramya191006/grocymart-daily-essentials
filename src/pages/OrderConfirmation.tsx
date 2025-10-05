@@ -130,6 +130,11 @@ const OrderConfirmation = () => {
                     src={item.products?.image_url || "/placeholder.svg"}
                     alt={item.products?.name}
                     className="h-16 w-16 rounded-lg object-cover"
+                    onError={(e) => {
+                      e.currentTarget.src = "/placeholder.svg";
+                      e.currentTarget.onerror = null;
+                    }}
+                    loading="lazy"
                   />
                   <div className="flex-1">
                     <h4 className="font-semibold">{item.products?.name}</h4>

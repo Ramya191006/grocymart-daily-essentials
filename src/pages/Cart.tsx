@@ -113,6 +113,11 @@ const Cart = () => {
                       src={item.image_url || "/placeholder.svg"}
                       alt={item.name}
                       className="h-24 w-24 rounded-lg object-cover"
+                      onError={(e) => {
+                        e.currentTarget.src = "/placeholder.svg";
+                        e.currentTarget.onerror = null;
+                      }}
+                      loading="lazy"
                     />
                     <div className="flex-1">
                       <h3 className="font-semibold text-lg mb-2">{item.name}</h3>
