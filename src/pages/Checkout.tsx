@@ -198,12 +198,12 @@ const Checkout = () => {
                     <span>
                       {item.name} × {item.quantity}
                     </span>
-                    <span>${(item.price * item.quantity).toFixed(2)}</span>
+                    <span>₹{(item.price * item.quantity).toFixed(2)}</span>
                   </div>
                 ))}
                 <div className="border-t pt-4 flex justify-between text-lg font-bold">
                   <span>Total</span>
-                  <span className="text-primary">${total.toFixed(2)}</span>
+                  <span className="text-primary">₹{total.toFixed(2)}</span>
                 </div>
               </CardContent>
             </Card>

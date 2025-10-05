@@ -95,7 +95,7 @@ const OrderConfirmation = () => {
               </div>
               <div className="flex justify-between text-lg font-bold">
                 <span>Total:</span>
-                <span className="text-primary">${order?.total?.toFixed(2)}</span>
+                <span className="text-primary">₹{order?.total?.toFixed(2)}</span>
               </div>
             </CardContent>
           </Card>
@@ -134,11 +134,11 @@ const OrderConfirmation = () => {
                   <div className="flex-1">
                     <h4 className="font-semibold">{item.products?.name}</h4>
                     <p className="text-sm text-muted-foreground">
-                      Quantity: {item.quantity} × ${item.price?.toFixed(2)}
+                      Quantity: {item.quantity} × ₹{item.price?.toFixed(2)}
                     </p>
                   </div>
                   <div className="text-right">
-                    <p className="font-semibold">${(item.quantity * item.price)?.toFixed(2)}</p>
+                    <p className="font-semibold">₹{(item.quantity * item.price)?.toFixed(2)}</p>
                   </div>
                 </div>
               ))}

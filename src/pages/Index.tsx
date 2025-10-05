@@ -3,24 +3,40 @@ import { Button } from "@/components/ui/button";
 import { ArrowRight, ShoppingBag, Clock, Shield } from "lucide-react";
 import Header from "@/components/Header";
 import { useEffect, useState } from "react";
+import { useNavigate } from "react-router-dom";
 import { supabase } from "@/integrations/supabase/client";
 import ProductCard from "@/components/ProductCard";
 
 const Index = () => {
+  const navigate = useNavigate();
   const [featuredProducts, setFeaturedProducts] = useState<any[]>([]);
+  const [loading, setLoading] = useState(true);
 
   useEffect(() => {
-    const fetchFeaturedProducts = async () => {
-      const { data } = await supabase
-        .from("products")
-        .select("*")
-        .limit(4);
-      
-      if (data) setFeaturedProducts(data);
-    };
-
+    checkAuth();
     fetchFeaturedProducts();
   }, []);
+
+  const checkAuth = async () => {
+    const { data: { session } } = await supabase.auth.getSession();
+    if (!session) {
+      navigate("/auth");
+    }
+    setLoading(false);
+  };
+
+  const fetchFeaturedProducts = async () => {
+    const { data } = await supabase
+      .from("products")
+      .select("*")
+      .limit(4);
+    
+    if (data) setFeaturedProducts(data);
+  };
+
+  if (loading) {
+    return null;
+  }
 
   return (
     <div className="min-h-screen bg-background">
